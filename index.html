@@ -5,18 +5,69 @@
         <title>Jacked & Juicy Workout Tracker - Google Sync</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <style>
-            body{{font-family:Arial,Helvetica,sans-serif;margin:0;padding:1rem;background:#f8f9fa;}}
-            header{{background:#222;color:#fff;padding:1rem;text-align:center;}}
-            main{{max-width:1000px;margin:2rem auto;background:#fff;padding:1rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);}}
-            select,button{{padding:.4rem .8rem;margin-right:.5rem;}}
-            button{{background:#28a745;border:none;border-radius:4px;color:#fff;cursor:pointer;}}
-            button.secondary{{background:#007bff;}}
-            button:disabled{{background:#6c757d;cursor:not-allowed;}}
-            table{{width:100%;border-collapse:collapse;margin-top:1rem;}}
-            th,td{{border:1px solid #ced4da;padding:.5rem;text-align:left;}}
-            th{{background:#e9ecef;}}
-            input[type='number']{{width:80px;}}
-            @media(max-width:600px){{table,th,td{{font-size:0.9rem;}}}}
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                margin: 0;
+                padding: 1rem;
+                background: #f8f9fa;
+            }
+            header {
+                background: #222;
+                color: #fff;
+                padding: 1rem;
+                text-align: center;
+            }
+            main {
+                max-width: 1000px;
+                margin: 2rem auto;
+                background: #fff;
+                padding: 1rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+            select,
+            button {
+                padding: 0.4rem 0.8rem;
+                margin-right: 0.5rem;
+            }
+            button {
+                background: #28a745;
+                border: none;
+                border-radius: 4px;
+                color: #fff;
+                cursor: pointer;
+            }
+            button.secondary {
+                background: #007bff;
+            }
+            button:disabled {
+                background: #6c757d;
+                cursor: not-allowed;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 1rem;
+            }
+            th,
+            td {
+                border: 1px solid #ced4da;
+                padding: 0.5rem;
+                text-align: left;
+            }
+            th {
+                background: #e9ecef;
+            }
+            input[type="number"] {
+                width: 80px;
+            }
+            @media (max-width: 600px) {
+                table,
+                th,
+                td {
+                    font-size: 0.9rem;
+                }
+            }
         </style>
     </head>
     <body>
@@ -32,6 +83,7 @@
                 Sync to Google Sheets
             </button>
         </header>
+
         <main>
             <label
                 >Week:
@@ -42,6 +94,7 @@
                 <select id="daySel"></select
             ></label>
             <button id="loadBtn">Load</button>
+
             <table id="table">
                 <thead>
                     <tr>
@@ -55,6 +108,7 @@
                 </thead>
                 <tbody></tbody>
             </table>
+
             <p style="margin-top: 1rem; font-size: 0.9rem">
                 After each session, tap <strong>Sync</strong> to push your data
                 to Google Sheets. Data is also saved locally on your phone so
@@ -63,128 +117,177 @@
         </main>
 
         <script>
-            // ======== PROGRAM DATA (auto‑generated) ========
-            const PROGRAM = {"1": {"1": ["Comp. Bench Press- 2x8 @ 65%, rest as needed", "5-2-0 tempo  Bench Press 2x3 @ 60% 90 sec rest", "Supinated grip lat pull down- set a timer for 3 minutes and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 20. Smith machine shoulder press or hammer strength (pick one and use that every week)- 3x8 rpe 7,8,9 2m rest", "Cable Y Raise (lying on floor) 2 sec negative \u2013 3x8 @ rpe 8, 60 sec rest", "Cable flies- 6x10 @ rpe 7 60 sec rest Thumbless incline bench DB curls myo rep (SEE INSTRUCTIONS)"], "2": ["Squat- 2x6 @ 72%, REST AS NEEDED", "Stiff leg deadlift- 3x5 @ rpe 8 180 sec rest", "Calve Raises- Myo rep x2, 90 sec rest", "Leg Extensions- 1ea at 40,30,20,15 reps start at rpe 8 and increase weight ea set.", "Hamstring Curls- set a timer for 4m and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 20."], "3": ["Incline Bench- 3x1 from failure @ 53% of comp bench 2m rest", "Head supported rear delt flies 2 sec squeeze and 2 sec neg - 3x6 @ rpe 8 90 sec rest Bicep curl gauntlet, start at weight you can do for 6 reps ea arm, and drop set every db until failure.", "DB paused tricep ext- 1 ea x15,12,10,max @ rpe 7 (same weight), 60 sec rest Smith machine bench press or hammer strength (pick one and use that every week)- 3x8 rpe 7,8,9 2m  rest", "Tempo Preacher Curls 5-2-0- 4x10 @ rpe 8 1m rest", "Rope tricep ext 2 sec squeeze- 4x 1 from failure @ rpe 8 90 sec rest"], "4": ["Conventional Deadlift controlled eccentric- 2x7 @ 72%", "Bent Over Row- 3x5 @ rpe 8 180 sec rest", "Leg press machine of choice (hack squat, belt squat,etc.)- set a timer for 2 minutes and do as many reps as possible. (pick a weight you could do for", "12-15)", "Kickstand DB RDL 3 sec negative- 3x8 @rpe 7 90 sec rest", "Leg ext- 1x100  weight you used for 30 reps set on day 2 (take 10 sec rest at failure and continue until 100 reps is achieved)"]}, "2": {"1": ["Comp. Bench Press- 2x8 @ 67.5%, rest as needed", "5-2-0 tempo  Bench Press 2x3 @ 63% 90 sec rest", "Supinated grip lat pull down- set a timer for 3 minutes and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 20. Smith machine shoulder press or hammer strength (pick one and use that every week)- 3x8 rpe 7,8,9 1m 45sec  rest", "Cable Y Raise (lying on floor) 2 sec negative \u2013 3x9 @ rpe 8, 60 sec rest", "Cable flies- 6x10 @rpe 7.5 60 sec rest Thumbless incline bench DB curls myo rep (SEE INSTRUCTIONS)"], "2": ["Squat- 2x6 @ 75%, REST AS NEEDED", "Stiff leg deadlift- 3x6 @ rpe 8 180 sec rest", "Calve Raises- Myo rep x2, 90 sec rest", "Leg Extensions- 1ea at 40,30,20,15 reps start at rpe 8 and increase weight ea set.", "Hamstring Curls- set a timer for 4m and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 20."], "3": ["Incline Bench- 3x1 from failure @ 56% of comp bench 2m rest", "Head supported rear delt flies 2 sec squeeze and 2 sec neg - 3x8 @ rpe 8 90 sec rest Bicep curl gauntlet, start at weight you can do for 6 reps ea arm, and drop set every db until failure.", "DB paused tricep ext- 1 ea x15,12,12,max @ rpe 7 (same weight), 60 sec rest Smith machine bench press or hammer strength (pick one and use that every week)- 3x8 rpe 7,8,9 2m  rest", "Tempo Preacher Curls 5-2-0- 4x10 @ rpe 8 1m rest", "Rope tricep ext 2 sec squeeze- 4x 1 from failure @ rpe 8 90 sec rest"], "4": ["Conventional Deadlift controlled eccentric- 2x5 @ 75%", "Bent Over Row- 3x5 @ rpe 8 180 sec rest", "Leg press machine of choice (hack squat, belt squat,etc.)- set a timer for 2 minutes and do as many reps as possible. (pick a weight you could do for", "12-15)", "Kickstand DB RDL 3 sec negative- 4x8 @ rpe 7 90 sec rest", "Leg ext- 1x100  weight you used for 30 reps set on day 2 (take 10 sec rest at failure and continue until 100 reps is achieved)"]}, "3": {"1": ["Comp. Bench Press- 3x8 @ 62.5%, rest as needed", "5-2-0 tempo  Bench Press 4x3 @ 63% 90 sec rest", "Supinated grip lat pull down- set a timer for 3 minutes and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 20. Smith machine shoulder press or hammer strength (pick one and use that every week)- 3x8 rpe 8,8,9 1m 45sec  rest", "Cable Y Raise (lying on floor) 2 sec negative \u2013 3x9 @ rpe 8, 60 sec rest", "Cable flies- 6x10 @rpe 7.5 60 sec rest Thumbless incline bench DB curls myo rep (SEE INSTRUCTIONS)"], "2": ["Squat- 3x6 @ 70%, REST AS NEEDED", "Stiff leg deadlift- 3x6 @ rpe 8 150 sec rest", "Calve Raises- Myo rep x2, 90 sec rest", "Leg Extensions- 1ea at 40,30,20,15 reps start at rpe 8 and increase weight ea set.", "Hamstring Curls- set a timer for 4m and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 20."], "3": ["Incline Bench- 3x1 from failure @ 59% of comp bench 2m rest", "Head supported rear delt flies 2 sec squeeze and 2 sec neg - 3x8 @ rpe 8 70 sec rest Bicep curl gauntlet, start at weight you can do for 6 reps ea arm, and drop set every db until failure.", "DB paused tricep ext- 1 ea x15,12,12,max @ rpe 7 (same weight), 60 sec rest Smith machine bench press or hammer strength (pick one and use that every week)- 3x8 rpe 8,8,9 2m  rest", "Tempo Preacher Curls 5-2-0- 4x10 @ rpe 8 1m rest", "Rope tricep ext 2 sec squeeze- 4x 1 from failure @ rpe 8 90 sec rest"], "4": ["Conventional Deadlift controlled eccentric- 2x5 @ 78%", "Bent Over Row- 3x6 @ rpe 8 180 sec rest", "Leg press machine of choice (hack squat, belt squat,etc)- set a timer for 2 minutes and do as many reps as possible. (pick a weight you could do for", "12-15)", "Kickstand DB RDL 3 sec negative- 4x8 @ rpe 8 90 sec rest", "Leg ext- 1x100  weight you used for 30 reps set on day 2 (take 10 sec rest at failure and continue until 100 reps is achieved)"]}, "4": {"1": ["Comp. Bench Press- 3x6 @ 70.5%, rest as needed", "5-2-0 tempo Bench Press 4x3 @ 65% 90 sec rest", "Supinated grip lat pull down- set a timer for 3 minutes and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 15. Smith machine shoulder press or hammer strength (pick one and use that every week)- 3x8 rpe 8,8,9 1m 105sec  rest", "Cable Y Raise (lying on floor) 2 sec negative \u2013 4x8 @ rpe 8.5, 60 sec rest", "Cable flies- 6x10 @rpe 7.5 60 sec rest Thumbless incline bench DB curls myo rep (SEE INSTRUCTIONS)"], "2": ["Squat- 3x6 @ 73%, REST AS NEEDED", "Stiff leg deadlift- 3x6 @ rpe 8 150 sec rest", "Calve Raises- Myo rep x2, 90 sec rest", "Leg Extensions- 1ea at 40,30,20,15 reps start at rpe 8 and increase weight ea set.", "Hamstring Curls- set a timer for 4m and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 20."], "3": ["Incline Bench- 3x1 from failure @ 62% of comp bench 2m rest", "Head supported rear delt flies 2 sec squeeze and 2 sec neg - 3x10 @ rpe 8 70 sec rest Bicep curl gauntlet, start at weight you can do for 6 reps ea arm, and drop set every db until failure.", "DB paused tricep ext- 1 ea x15,12,12,max @ rpe 7 (same weight), 60 sec rest Smith machine bench press or hammer strength (pick one and use that every week)- 3x8 rpe 8,8,9 2m  rest", "Tempo Preacher Curls 5-2-0- 4x10 @ rpe 8 1m rest", "Rope tricep ext 2 sec squeeze- 4x 1 from failure @ rpe 8 90 sec rest"], "4": ["Conventional Deadlift controlled eccentric- 4x4 @ 70%", "Bent Over Row- 3x6 @ rpe 8.5 180 sec rest", "Leg press machine of choice (hack squat, belt squat,etc.)- set a timer for 2.5 minutes and do as many reps as possible. (pick a weight you could do for 12-15)", "Kickstand DB RDL 3 sec negative- 4x8 @ rpe 8 90 sec rest", "Leg ext- 1x100  weight you used for 30 reps set on day 2 (take 10 sec rest at failure and continue until 100 reps is achieved)"]}, "5": {"1": ["Comp. Bench Press- 5x4 @ 72.5%, rest as needed", "5-2-0 tempo  Bench Press 2x3 @ 67% 90 sec rest", "Supinated grip lat pull down- set a timer for 3 minutes and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 15. Smith machine shoulder press or hammer strength (pick one and use that every week)- 3x8 rpe 8,8,9 1m 105sec  rest", "Cable Y Raise (lying on floor) 2 sec negative \u2013 4x10 @ rpe 8.5, 60 sec rest", "Cable flies- 6x10 @rpe 8 60 sec rest Thumbless incline bench DB curls myo rep x2(SEE INSTRUCTIONS)"], "2": ["Squat- 2x5 @ 80%, REST AS NEEDED", "Stiff leg deadlift- 3x5 @ rpe 9 180 sec rest", "Calve Raises- Myo rep x3, 90 sec rest", "Leg Extensions- 1ea at 40,30,20,15 reps start at rpe 9 and increase weight ea set.", "Hamstring Curls- set a timer for 4m and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 15."], "3": ["Incline Bench- 2x5 @ 65% of comp bench 2m rest", "Head supported rear delt flies 2 sec squeeze and 2 sec neg - 4x10 @ rpe 8 70 sec rest Bicep curl gauntlet, start at weight you can do for 6 reps ea arm, and drop set every db until failure.", "DB paused tricep ext- 1 ea x10,10,8,max @ rpe 8.5 (same weight), 60 sec rest Smith machine bench press or hammer strength (pick one and use that every week)- 3x8 rpe 8,8,9 2m  rest", "Tempo Preacher Curls 5-2-0- 4x10 @ rpe 9 1m rest", "Rope tricep ext 2 sec squeeze- 4x 1 from failure @ rpe 9 90 sec rest"], "4": ["Conventional Deadlift controlled eccentric- 2x4 @ 82%", "Bent Over Row- 3x6 @ rpe 8.5 180 sec rest", "Leg press machine of choice (hack squat, belt squat,etc)- set a timer for 2.5 minutes and do as many reps as possible. (pick a weight you could do for 12-15)", "Kickstand DB RDL 3 sec negative- 4x8 @ rpe 8.5 90 sec rest", "Leg ext- 1x100  weight you used for 30 reps set on day 2 (take 10 sec rest at failure and continue until 100 reps is achieved)"]}, "6": {"1": ["Comp. Bench Press- 4x3 @ 80%, rest as needed", "5-2-0 tempo  Bench Press 2x5 @ 63% 90 sec rest", "Supinated grip lat pull down- set a timer for 4 minutes and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 15. Smith machine shoulder press or hammer strength (pick one and use that every week)- 3x8 rpe 8,8,9 1m 105sec  rest", "Cable Y Raise (lying on floor) 2 sec negative \u2013 5x10 @ rpe 8.5, 60 sec rest", "Cable flies- 6x10 @rpe 8 60 sec rest Thumbless incline bench DB curls myo rep x2(SEE INSTRUCTIONS)"], "2": ["Squat- 3x3 @ 83%, REST AS NEEDED", "Stiff leg deadlift- 3x8 @ rpe 7 180 sec rest", "Calve Raises- Myo rep x3, 90 sec rest", "Leg Extensions- 1ea at 40,30,20,15 reps start at rpe 9 and increase weight ea set.", "Hamstring Curls- set a timer for 4m and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 15."], "3": ["Incline Bench- 2x5 @ 67.5% of comp bench 2m rest", "Head supported rear delt flies 2 sec squeeze and 2 sec neg - 4x10 @ rpe 8 60 sec rest Bicep curl gauntlet, start at weight you can do for 6 reps ea arm, and drop set every db until failure.", "DB paused tricep ext- 1 ea x10,10,8,max @ rpe 8.5 (same weight), 60 sec rest Smith machine bench press or hammer strength (pick one and use that every week)- 3x8 rpe 8,8,9 2m  rest", "Tempo Preacher Curls 5-2-0- 4x10 @ rpe 9 1m rest", "Rope tricep ext 2 sec squeeze- 4x failure @ rpe 9 90 sec rest"], "4": ["Conventional Deadlift controlled eccentric- 4x3 @ 73%", "Bent Over Row- 3x5 @ rpe 9 180 sec rest", "Leg press machine of choice (hack squat, belt squat,etc.)- set a timer for 2.5 minutes and do as many reps as possible. (pick a weight you could do for 12-15)", "Kickstand DB RDL 3 sec negative- 4x8 @ rpe 9 90 sec rest", "Leg ext- 1x100  weight you used for 20 reps set on day 2 (take 10 sec rest at failure and continue until 100 reps is achieved) At this point in the program, the workouts will flip, where previously you hit triceps first, you will now hit biceps first, or hamstrings before quads etc.. Using the tricep/bicep example, try to use the same weight for triceps now, as you did when they were before biceps. You should now increase the weight on the bicep movement, since you are hitting it first."]}, "7": {"1": ["Comp. Bench Press- 2x3 @83%, rest as needed", "Close Grip Bench Press 2x7 @ 60% 90 sec rest", "Cable Y Raise (lying on floor) 2 sec negative \u2013 5x10 @ rpe 7, 60 sec rest Smith machine shoulder press or hammer strength (pick one and use that every week)- 3x8 rpe 7 1m 105sec  rest Thumbless incline bench DB curls myo rep x2(SEE INSTRUCTIONS)", "Cable flies- 6x10 @rpe 8 60 sec rest", "Chest supported machine or db row- set a timer for 3 minutes and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 15."], "2": ["Squat- 2x3 @ 86%, REST AS NEEDED", "Stiff leg deadlift- 3x5 @ rpe 8 140 sec rest", "Hamstring Curls- 7x10 @ rpe 8 60 rest rest", "Leg extsions- set a timer for 3m and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 20.", "Calve Raises- Myo rep x3, 90 sec rest"], "3": ["Incline Bench- 3x6 @ 62.5% of comp bench 2m rest", "DB paused tricep ext- 1 ea x10,10,8, max @ rpe 8.5 (same weight), 60 sec rest", "Head supported rear delt flies 2 sec squeeze and 2 sec neg - 4x10 @ rpe 8 60 sec rest Bicep curl gauntlet, start at weight you can do for 6 reps ea arm, and drop set every db until failure.", "Rope tricep ext 2 sec squeeze- 4x failure @ rpe 7 90 sec rest", "Tempo Preacher Curls 5-2-0- 4x10 @ rpe 7 1m rest Smith machine bench press or hammer strength (pick one and use that every week)- 3x8 rpe 7 2m  rest Bicep curl gauntlet, start at weight you can do for 10 reps ea arm, and drop set every db until failure."], "4": ["Conventional Deadlift controlled eccentric- 4x3 @ 77%", "Neutral grip lat pulldown - 4x6 @ rpe 9 90 sec rest", "Leg ext- 4x20 @ rpe 8 90 sec rest", "Leg press machine of choice (hack squat, belt squat,etc)- 3x8 @ rpe 7", "Bulgarian split squat- 4x8 @ rpe 7 90 sec rest"]}, "8": {"1": ["Comp. Bench Press- 2x3 @85.5%, rest as needed", "Close Grip Bench Press 2x7 @ 63% 120 sec rest", "Cable Y Raise (lying on floor) 2 sec negative \u2013 5x10 @ rpe 7.5, 60 sec rest Smith machine shoulder press or hammer strength (pick one and use that every week)- 3x8 rpe 7.5 1m 120sec  rest Thumbless incline bench DB curls myo rep x2(SEE INSTRUCTIONS)", "Cable flies- 6x8 @rpe 8.5 90 sec rest", "Chest supported machine or db row- set a timer for 3 minutes and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 15."], "2": ["Squat- 3x5 @ 77%, REST AS NEEDED", "Stiff leg deadlift- 4x5 @ rpe 8 140 sec rest", "Hamstring Curls- 7x10 @ rpe 8 60 rest rest", "Leg extsions- set a timer for 3m and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 20.", "Calve Raises- Myo rep x3, 70 sec rest"], "3": ["Incline Bench- 4x6 @ 60% of comp bench 2m rest", "DB paused tricep ext- 1 ea x10,10,8, max @ rpe 8.5 (same weight), 60 sec rest", "Head supported rear delt flies 2 sec squeeze and 2 sec neg - 4x10 @ rpe 8 60 sec rest Bicep curl gauntlet, start at weight you can do for 6 reps ea arm, and drop set every db until failure.", "Rope tricep ext 2 sec squeeze- 4x failure @ rpe 7 90 sec rest", "Tempo Preacher Curls 5-2-0- 4x10 @ rpe 7.5 1m rest Smith machine bench press or hammer strength (pick one and use that every week)- 3x8 rpe 7 2m  rest Bicep curl gauntlet, start at weight you can do for 10 reps ea arm, and drop set every db until failure."], "4": ["Conventional Deadlift controlled eccentric- 3x3 @ 85%", "Neutral grip lat pulldown - 5x6 @ rpe 9 90 sec rest", "Leg ext- 4x20 @ rpe 8 90 sec rest", "Leg press machine of choice (hack squat, belt squat,etc)- 3x8 @ rpe 7.5", "Bulgarian split squat- 4x8 @ rpe 7 90 sec rest"]}, "9": {"1": ["Comp. Bench Press- 1x3 @88%, rest as needed", "Close Grip Bench Press 3x7 @ 63% 120 sec rest", "Cable Y Raise (lying on floor) 2 sec negative \u2013 5x10 @ rpe 8, 60 sec rest Smith machine shoulder press or hammer strength (pick one and use that every week)- 3x8 rpe 7.5 1m 120sec  rest Thumbless incline bench DB curls myo rep x3(SEE INSTRUCTIONS)", "Cable flies- 6x8 @rpe 8.5 90 sec rest", "Chest supported machine or db row- set a timer for 3 minutes and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 15."], "2": ["Squat- 1x3 @ 88%, REST AS NEEDED", "Squat-2x3 @ 60% 180s rest", "Stiff leg deadlift- 3x5 @ rpe 8 140 sec rest", "Hamstring Curls- 4x10 @ rpe 8 60 rest rest", "Leg extsions- set a timer for 3m and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 20.", "Calve Raises- Myo rep x3, 70 sec rest"], "3": ["Incline Bench- 2x5 @ 68% of comp bench 2m rest", "DB paused tricep ext- 1 ea x12,10,8, max @ rpe 8.5 (same weight), 60 sec rest", "Head supported rear delt flies 2 sec squeeze and 2 sec neg - 4x10 @ rpe 8.5 60 sec rest Bicep curl gauntlet, start at weight you can do for 6 reps ea arm, and drop set every db until failure.", "Rope tricep ext 2 sec squeeze- 4x failure @ rpe 7 90 sec rest", "Tempo Preacher Curls 5-2-0- 4x10 @ rpe 7.5 1m rest Smith machine bench press or hammer strength (pick one and use that every week)- 3x8 rpe 7 2m  rest Bicep curl gauntlet, start at weight you can do for 8 reps ea arm, and drop set every db until failure."], "4": ["Conventional Deadlift controlled eccentric- 3x5 @ 79%", "Neutral grip lat pulldown - 5x6 @ rpe 9 90 sec rest", "Leg ext- 4x20 @ rpe 8.5 90 sec rest", "Leg press machine of choice (hack squat, belt squat,etc)- 3x8 @ rpe 7.5", "Bulgarian split squat- 4x8 @ rpe 7.5 90 sec rest"]}, "10": {"1": ["Comp. Bench Press- 3x8 @ 65%, rest as needed", "Cable Y Raise (lying on floor) 2 sec negative \u2013 5x10 @ rpe 8, 60 sec rest Smith machine shoulder press or hammer strength (pick one and use that every week)- 3x8 rpe 7.5 1m 120sec  rest Thumbless incline bench DB curls myo rep x3(SEE INSTRUCTIONS)", "Cable flies- 6x8 @rpe 8.5 90 sec rest", "Chest supported machine or db row- set a timer for 3 minutes and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 15."], "2": ["Squat- 3x6 @ 76%, REST AS NEEDED", "Stiff leg deadlift- 3x5 @ rpe 7 140 sec rest", "Hamstring Curls- 4x10 @ rpe 8 60 rest rest", "Leg extsions- set a timer for 2m and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 10.", "Calve Raises- Myo rep x3, 60 sec rest"], "3": ["Incline Bench- 3x1 from failure @ 55% of comp bench 2m rest", "DB paused tricep ext- 1 ea x12,10,8, max @ rpe 8.5 (same weight), 60 sec rest", "Head supported rear delt flies 2 sec squeeze and 2 sec neg - 4x10 @ rpe 8.5 60 sec rest Bicep curl gauntlet, start at weight you can do for 6 reps ea arm, and drop set every db until failure.", "Rope tricep ext 2 sec squeeze- 4x failure @ rpe 7 90 sec rest", "Tempo Preacher Curls 5-2-0- 4x10 @ rpe 8 1m rest Smith machine bench press or hammer strength (pick one and use that every week)- 3x8 rpe 7 2m  rest Bicep curl gauntlet, start at weight you can do for 8 reps ea arm, and drop set every db until failure."], "4": ["Conventional Deadlift controlled eccentric- 3x5 @ 82%", "Neutral grip lat pulldown - 6x6 @ rpe 9 90 sec rest", "Leg ext- 4x20 @ rpe 8.5 90 sec rest", "Leg press machine of choice (hack squat, belt squat,etc)- 3x8 @ rpe 7.5", "Bulgarian split squat- 4x8 @ rpe 7.5 90 sec rest"]}, "11": {"1": ["Comp. Bench Press- 3x8 @ 67.5%, rest as needed", "Cable Y Raise (lying on floor) 2 sec negative \u2013 5x10 @ rpe 8, 60 sec rest Smith machine shoulder press or hammer strength (pick one and use that every week)- 3x8 rpe 7.5 1m 120sec  rest Thumbless incline bench DB curls myo rep x3(SEE INSTRUCTIONS)", "Cable flies- 6x8 @rpe 8.5 90 sec rest", "Chest supported machine or db row- set a timer for 3 minutes and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 15."], "2": ["Squat- 3x6 @ 78.5%, REST AS NEEDED", "Stiff leg deadlift- 3x5 @ rpe 7 140 sec rest", "Hamstring Curls- 4x10 @ rpe 8 60 rest rest", "Leg extsions- set a timer for 2m and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 10.", "Calve Raises- Myo rep x3, 60 sec rest"], "3": ["Incline Bench- 3x1 from failure @ 58% of comp bench 2m rest", "DB paused tricep ext- 1 ea x12,10,8, max @ rpe 8.5 (same weight), 60 sec rest", "Head supported rear delt flies 2 sec squeeze and 2 sec neg - 4x10 @ rpe 8.5 60 sec rest Bicep curl gauntlet, start at weight you can do for 6 reps ea arm, and drop set every db until failure.", "Rope tricep ext 2 sec squeeze- 4x failure @ rpe 7 90 sec rest", "Tempo Preacher Curls 5-2-0- 4x10 @ rpe 8 1m rest Smith machine bench press or hammer strength (pick one and use that every week)- 3x8 rpe 7 2m  rest Bicep curl gauntlet, start at weight you can do for 8 reps ea arm, and drop set every db until failure."], "4": ["Conventional Deadlift controlled eccentric- 5x3 @ 85%", "Neutral grip lat pulldown - 7x6 @ rpe 9 90 sec rest", "Leg ext- 4x20 @ rpe 8.5 90 sec rest", "Leg press machine of choice (hack squat, belt squat,etc)- 3x8 @ rpe 7.5", "Bulgarian split squat- 4x8 @ rpe 7.5 90 sec rest"]}, "12": {"1": ["Comp. Bench Press- 3x6 @ 73.5%, rest as needed", "Cable Y Raise (lying on floor) 2 sec negative \u2013 5x10 @ rpe 8, 60 sec rest Smith machine shoulder press or hammer strength (pick one and use that every week)- 3x8 rpe 7.5 1m 120sec  rest Thumbless incline bench DB curls myo rep x3(SEE INSTRUCTIONS)", "Cable flies- 6x8 @rpe 8.5 90 sec rest", "Chest supported machine or db row- set a timer for 3 minutes and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 15."], "2": ["Squat- 3x5 @ 83%, REST AS NEEDED", "Stiff leg deadlift- 3x5 @ rpe 7 140 sec rest", "Hamstring Curls- 4x10 @ rpe 8 60 rest rest", "Leg extsions- set a timer for 2m and do as many reps as possible. When you hit failure, rest for 15 seconds and continue. Pick a weight you can initially do for 10.", "Calve Raises- Myo rep x3, 60 sec rest"], "3": ["Incline Bench- 3x1 from failure @ 61.5% of comp bench 2m rest", "DB paused tricep ext- 1 ea x12,10,8, max @ rpe 8.5 (same weight), 60 sec rest", "Head supported rear delt flies 2 sec squeeze and 2 sec neg - 4x10 @ rpe 8.5 60 sec rest Bicep curl gauntlet, start at weight you can do for 6 reps ea arm, and drop set every db until failure.", "Rope tricep ext 2 sec squeeze- 4x failure @ rpe 7 90 sec rest", "Tempo Preacher Curls 5-2-0- 4x10 @ rpe 8 1m rest Smith machine bench press or hammer strength (pick one and use that every week)- 3x8 rpe 7 2m  rest Bicep curl gauntlet, start at weight you can do for 8 reps ea arm, and drop set every db until failure."], "4": ["Conventional Deadlift controlled eccentric- 3x3 @ 88%", "Neutral grip lat pulldown - 7x6 @ rpe 9 90 sec rest", "Leg ext- 4x20 @ rpe 8.5 90 sec rest", "Leg press machine of choice (hack squat, belt squat,etc)- 3x8 @ rpe 7.5", "Bulgarian split squat- 4x8 @ rpe 7.5 90 sec rest Congatulations! You have now completed Jacked and Juicy 2.0, remember this was not a programmed designed to \u201cincrease\u201d your skill with singles on SBD. This program was designed to make ou generally Stronger and build your work capacity in the 70-80% range. The next program you run should be a peaking program, which will use the strength you built here. To increase your 1 rep max. if you are interested in personalized coaching after running the program you will receive a reduced rate for the first 3 months! If you are interested DM me on Instagram."]}};
+            // ======== INSERT YOUR DATA HERE ========
+            const PROGRAM = {
+                1: {
+                    1: ["Bench Press - 3x5", "Incline DB Press - 3x8"],
+                    2: ["Squats - 4x6", "Leg Curls - 3x12"],
+                },
+                // Replace with your full PROGRAM JSON
+            };
 
-            // ======== UI Logic (Week/Day switching) ========
-            const wSel=document.getElementById('weekSel');
-            const dSel=document.getElementById('daySel');
-            const tbody=document.querySelector('#table tbody');
-            function initProgram() {{
-              Object.keys(PROGRAM).sort((a,b)=>+a-+b).forEach(w=>wSel.add(new Option(w,w)));
-              populateDays();
-              loadTable();
-            }}
-            function populateDays() {{
-              dSel.innerHTML='';
-              Object.keys(PROGRAM[wSel.value]).sort((a,b)=>+a-+b).forEach(d=>dSel.add(new Option(d,d)));
-            }}
-            wSel.onchange=populateDays;
-            document.getElementById('loadBtn').onclick=loadTable;
+            const wSel = document.getElementById("weekSel");
+            const dSel = document.getElementById("daySel");
+            const tbody = document.querySelector("#table tbody");
 
-            function loadTable() {{
-              tbody.innerHTML='';
-              const exs=PROGRAM[wSel.value][dSel.value];
-              exs.forEach((ex,i)=>{{ createRow(ex,i); }});
-              restoreInputs();
-            }}
-            function createRow(ex,i) {{
-              const targetSets=guess(ex,/ (\d+)x/i);
-              const targetReps=guess(ex,/x\s*(\d+)[^\d]?/i);
-              const tr=document.createElement('tr');
-              tr.innerHTML='<td>'+ex+'</td><td>'+ (targetSets||'') +'</td><td>'+ (targetReps||'') +'</td>'+
-                '<td><input type="number" data-k="wt-'+wSel.value+'-'+dSel.value+'-'+i+'"></td>'+
-                '<td><input type="number" data-k="rep-'+wSel.value+'-'+dSel.value+'-'+i+'"></td>'+
-                '<td><input type="number" step="0.5" data-k="rpe-'+wSel.value+'-'+dSel.value+'-'+i+'"></td>';
-              tbody.appendChild(tr);
-            }}
-            function guess(text,reg){{const m=text.match(reg);return m?m[1]:'';}}
-            function attachInputHandlers() {{
-              tbody.querySelectorAll('input').forEach(inp=>{{
-                inp.onchange=()=>localStorage.setItem(inp.dataset.k,inp.value);
-              }});
-            }}
-            function restoreInputs() {{
-              attachInputHandlers();
-              tbody.querySelectorAll('input').forEach(inp=>{{const v=localStorage.getItem(inp.dataset.k);if(v!==null)inp.value=v;}});
-            }}
+            function initProgram() {
+                Object.keys(PROGRAM)
+                    .sort((a, b) => +a - +b)
+                    .forEach((w) => wSel.add(new Option(w, w)));
+                populateDays();
+                loadTable();
+            }
+
+            function populateDays() {
+                dSel.innerHTML = "";
+                Object.keys(PROGRAM[wSel.value])
+                    .sort((a, b) => +a - +b)
+                    .forEach((d) => dSel.add(new Option(d, d)));
+            }
+
+            function loadTable() {
+                tbody.innerHTML = "";
+                const exs = PROGRAM[wSel.value][dSel.value];
+                exs.forEach((ex, i) => createRow(ex, i));
+                restoreInputs();
+            }
+
+            function createRow(ex, i) {
+                const sets = guess(ex, /(\d+)x/);
+                const reps = guess(ex, /x\s*(\d+)/);
+                const tr = document.createElement("tr");
+                tr.innerHTML = `<td>${ex}</td><td>${sets || ""}</td><td>${reps || ""}</td>
+         <td><input type="number" data-k="wt-${wSel.value}-${dSel.value}-${i}"></td>
+         <td><input type="number" data-k="rep-${wSel.value}-${dSel.value}-${i}"></td>
+         <td><input type="number" step="0.5" data-k="rpe-${wSel.value}-${dSel.value}-${i}"></td>`;
+                tbody.appendChild(tr);
+            }
+
+            function guess(text, reg) {
+                const m = text.match(reg);
+                return m ? m[1] : "";
+            }
+
+            function attachInputHandlers() {
+                tbody.querySelectorAll("input").forEach((inp) => {
+                    inp.onchange = () =>
+                        localStorage.setItem(inp.dataset.k, inp.value);
+                });
+            }
+
+            function restoreInputs() {
+                attachInputHandlers();
+                tbody.querySelectorAll("input").forEach((inp) => {
+                    const v = localStorage.getItem(inp.dataset.k);
+                    if (v !== null) inp.value = v;
+                });
+            }
+
+            wSel.onchange = populateDays;
+            document.getElementById("loadBtn").onclick = loadTable;
             initProgram();
 
-            // ======== GOOGLE SHEETS SYNC ========
-            const CLIENT_ID = '522677610409-tmfmj40cpt9ka2htb12m6dbacbknv1q3.apps.googleusercontent.com'; // <-- replace
-            const API_KEY   = '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'; // <-- replace
-            const SHEET_ID  = '1k_4f6OnTrDOw7CCWIU5G2R89j_oxK9IbZWhlI_cPWBQ'; // <-- replace
-            const DISCOVERY_DOCS = ['https://sheets.googleapis.com/$discovery/rest?version=v4'];
-            const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
+            // ========== GOOGLE SHEETS SYNC ==========
+            const CLIENT_ID =
+                "522677610409-tmfmj40cpt9ka2htb12m6dbacbknv1q3.apps.googleusercontent.com";
+            const API_KEY = "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";
+            const SHEET_ID = "1k_4f6OnTrDOw7CCWIU5G2R89j_oxK9IbZWhlI_cPWBQ";
+            const DISCOVERY_DOCS = [
+                "https://sheets.googleapis.com/$discovery/rest?version=v4",
+            ];
+            const SCOPES = "https://www.googleapis.com/auth/spreadsheets";
 
-            const authorizeButton = document.getElementById('authorize_button');
-            const signoutButton = document.getElementById('signout_button');
-            const syncButton = document.getElementById('sync_button');
+            const authorizeButton = document.getElementById("authorize_button");
+            const signoutButton = document.getElementById("signout_button");
+            const syncButton = document.getElementById("sync_button");
 
             authorizeButton.onclick = handleAuthClick;
             signoutButton.onclick = handleSignoutClick;
             syncButton.onclick = syncToSheet;
 
-            function gapiLoaded() {{
-              gapi.load('client:auth2', initGapiClient);
-            }}
-            async function initGapiClient() {{
-              await gapi.client.init({{
-                apiKey: API_KEY,
-                clientId: CLIENT_ID,
-                discoveryDocs: DISCOVERY_DOCS,
-                scope: SCOPES
-              }});
-              gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-              updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-            }}
-            function updateSigninStatus(isSignedIn) {{
-              authorizeButton.style.display = isSignedIn ? 'none':'inline-block';
-              signoutButton.style.display = isSignedIn ? 'inline-block':'none';
-              syncButton.disabled = !isSignedIn;
-            }}
-            function handleAuthClick() {{ gapi.auth2.getAuthInstance().signIn(); }}
-            function handleSignoutClick() {{ gapi.auth2.getAuthInstance().signOut(); }}
+            function gapiLoaded() {
+                gapi.load("client:auth2", initGapiClient);
+            }
 
-            function gatherDataRows() {{
-              const rows = [];
-              for (const k in localStorage) {{
-                const m = k.match(/wt-(\d+)-(\d+)-(\d+)/);
-                if (!m) continue;
-                const [,week,day,idx] = m;
-                const exercise = PROGRAM[week][day][idx];
-                const weight = localStorage.getItem('wt-'+week+'-'+day+'-'+idx) || '';
-                const reps   = localStorage.getItem('rep-'+week+'-'+day+'-'+idx) || '';
-                const rpe    = localStorage.getItem('rpe-'+week+'-'+day+'-'+idx) || '';
-                const date   = new Date().toISOString().substring(0,10);
-                rows.push([week,day,exercise,weight,reps,rpe,date]);
-              }}
-              return rows;
-            }}
-            async function syncToSheet() {{
-              const rows = gatherDataRows();
-              if(!rows.length) {{
-                alert('No data to sync yet.');
-                return;
-              }}
-              try {{
-                await gapi.client.sheets.spreadsheets.values.append({{
-                  spreadsheetId: SHEET_ID,
-                  range: 'Logs!A1',
-                  valueInputOption: 'USER_ENTERED',
-                  resource: {{ values: rows }}
-                }});
-                alert('Workout data synced to Google Sheets!');
-              }} catch(err) {{
-                console.error(err);
-                alert('Sync failed. Check console for details.');
-              }}
-            }}
+            async function initGapiClient() {
+                await gapi.client.init({
+                    apiKey: API_KEY,
+                    clientId: CLIENT_ID,
+                    discoveryDocs: DISCOVERY_DOCS,
+                    scope: SCOPES,
+                });
+                gapi.auth2
+                    .getAuthInstance()
+                    .isSignedIn.listen(updateSigninStatus);
+                updateSigninStatus(
+                    gapi.auth2.getAuthInstance().isSignedIn.get(),
+                );
+            }
+
+            function updateSigninStatus(isSignedIn) {
+                authorizeButton.style.display = isSignedIn
+                    ? "none"
+                    : "inline-block";
+                signoutButton.style.display = isSignedIn
+                    ? "inline-block"
+                    : "none";
+                syncButton.disabled = !isSignedIn;
+            }
+
+            function handleAuthClick() {
+                gapi.auth2.getAuthInstance().signIn();
+            }
+
+            function handleSignoutClick() {
+                gapi.auth2.getAuthInstance().signOut();
+            }
+
+            function gatherDataRows() {
+                const rows = [];
+                for (const k in localStorage) {
+                    const m = k.match(/wt-(\d+)-(\d+)-(\d+)/);
+                    if (!m) continue;
+                    const [, week, day, idx] = m;
+                    const exercise = PROGRAM[week][day][idx];
+                    const weight =
+                        localStorage.getItem(`wt-${week}-${day}-${idx}`) || "";
+                    const reps =
+                        localStorage.getItem(`rep-${week}-${day}-${idx}`) || "";
+                    const rpe =
+                        localStorage.getItem(`rpe-${week}-${day}-${idx}`) || "";
+                    const date = new Date().toISOString().substring(0, 10);
+                    rows.push([week, day, exercise, weight, reps, rpe, date]);
+                }
+                return rows;
+            }
+
+            async function syncToSheet() {
+                const rows = gatherDataRows();
+                if (!rows.length) {
+                    alert("No data to sync yet.");
+                    return;
+                }
+                try {
+                    await gapi.client.sheets.spreadsheets.values.append({
+                        spreadsheetId: SHEET_ID,
+                        range: "Logs!A1",
+                        valueInputOption: "USER_ENTERED",
+                        resource: { values: rows },
+                    });
+                    alert("Workout data synced to Google Sheets!");
+                } catch (err) {
+                    console.error(err);
+                    alert("Sync failed. Check console for details.");
+                }
+            }
         </script>
-        <!-- Load the Google API script -->
+
+        <!-- Load Google API -->
         <script
             src="https://apis.google.com/js/api.js"
             onload="gapiLoaded()"
+            async
+            defer
         ></script>
     </body>
 </html>
